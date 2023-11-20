@@ -15,7 +15,7 @@ namespace HttpServer
             Console.WriteLine(listener.Prefixes.ToString());
 
             while (true)
-            {
+            {   
                 HttpListenerContext context = listener.GetContext();
                 HttpListenerRequest request = context.Request;
                 string clientIpAddress = request.RemoteEndPoint.Address.ToString();
