@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace HttpServer.DateBase
 {
-    public class UsersContext : DbContext
+    public class KeyContext : DbContext
     {
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<KeyDB> Keys { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,27 +23,27 @@ namespace HttpServer.DateBase
         {
             modelBuilder.UseCollation("ytf8mb4_general_ci")
                 .HasCharSet("utf8mb4");
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<KeyDB>(entity =>
             {
-                entity.ToTable("users");
+                entity.ToTable("keys");
 
                 entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-                entity.Property(e => e.Username)
+                entity.Property(e => e.Key)
                 .HasMaxLength(50)
-                .HasColumnName("username");
-                entity.Property(e => e.Password)
-                .HasMaxLength(50)
-                .HasColumnName("password");
+                .HasColumnName("key");
+                entity.Property(e => e.Datetime)
+                .HasMaxLength(8)
+                .HasColumnName("datetime");
             });
         }
     }
-    public class User
+    public class KeyDB
     {
         [Key]
         public int? Id { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
+        public string? Key { get; set; }
+        public string? Datetime { get; set; }
     }
 }
