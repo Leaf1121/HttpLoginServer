@@ -15,7 +15,7 @@ namespace HttpServer
             Console.WriteLine("Server Start");
 
             while (true)
-            {   
+            {
                 HttpListenerContext context = listener.GetContext();
                 HttpListenerRequest request = context.Request;
                 string clientIpAddress = request.RemoteEndPoint.Address.ToString();
@@ -28,7 +28,7 @@ namespace HttpServer
                     var queryParams = HttpUtility.ParseQueryString(requestBody);
                     key = queryParams["key"];
                     Console.WriteLine($"{clientIpAddress} : Key = {key}");
-
+                    
                     string responseString = "";
 
                     using var db = new KeyContext();
