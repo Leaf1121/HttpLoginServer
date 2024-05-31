@@ -10,7 +10,7 @@ namespace HttpServer
         public static void Main(string[] args)
         {
             HttpListener listener = new();
-            listener.Prefixes.Add("http://192.168.20.98:8145/");
+            listener.Prefixes.Add("http://ip:port/");
             listener.Start();
             Console.WriteLine("Server Start");
 
